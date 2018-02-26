@@ -1,0 +1,66 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="placeholderPrefix" value="${"></property>
+		<property name="placeholderSuffix" value="}"></property>
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="searchSystemEnvironment" value="true" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<!-- <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" 
+			/> -->
+		<property name="locations">
+
+			<list>
+				
+				<value>file:///${NB_HOME}/database.properties</value>
+			
+			</list>
+		</property>
+
+	</bean>
+	<bean id="metadataSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${dataobject.jdbc.driverClassName}" />
+		<property name="url" value="${dataobject.jdbc.url}" />
+		<property name="username" value="${dataobject.jdbc.username}" />
+		<property name="password" value="${dataobject.jdbc.password}" />
+		<property name="maxActive" value="${dataobject.jdbc.maxActive}" />
+		<property name="minIdle" value="${dataobject.jdbc.minIdle}" />
+		<property name="maxWait" value="${dataobject.jdbc.maxWait}" />
+		<property name="initialSize" value="${dataobject.jdbc.initialSize}" />
+		<property name="removeAbandoned" value="${dataobject.jdbc.removeAbandoned}" />
+		<property name="removeAbandonedTimeout" value="${dataobject.jdbc.removeAbandonedTimeout}" />
+	 	</bean>
+	<bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${dataobject.jdbc.driverClassName}" />
+		<property name="url" value="${dataobject.jdbc.url}" />
+		<property name="username" value="${dataobject.jdbc.username}" />
+		<property name="password" value="${dataobject.jdbc.password}" />
+		<property name="maxActive" value="${dataobject.jdbc.maxActive}" />
+		<property name="minIdle" value="${dataobject.jdbc.minIdle}" />
+		<property name="maxWait" value="${dataobject.jdbc.maxWait}" />
+		<property name="initialSize" value="${dataobject.jdbc.initialSize}" />
+		<property name="removeAbandoned" value="${dataobject.jdbc.removeAbandoned}" />
+		<property name="removeAbandonedTimeout" value="${dataobject.jdbc.removeAbandonedTimeout}" />
+        <property name="defaultAutoCommit" value="false" />
+	</bean>
+	<bean id="nmdatasource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${dataobject.jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="maxActive" value="${jdbc.maxActive}" />
+		<property name="minIdle" value="${jdbc.minIdle}" />
+		<property name="maxWait" value="${jdbc.maxWait}" />
+		<property name="initialSize" value="${jdbc.initialSize}" />
+		<property name="removeAbandoned" value="${jdbc.removeAbandoned}" />
+		<property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}" />
+
+	</bean>
+</beans>
